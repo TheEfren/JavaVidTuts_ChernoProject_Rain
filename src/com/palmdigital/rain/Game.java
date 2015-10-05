@@ -16,6 +16,7 @@ import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.input.Keyboard;
 import com.palmdigital.rain.level.Level;
 import com.palmdigital.rain.level.RandomLevel;
+import com.palmdigital.rain.level.SpawnLevel;
 
 public class Game extends Canvas implements Runnable 
 {
@@ -46,7 +47,7 @@ public class Game extends Canvas implements Runnable
 		screen = new Screen(width, height);	
 		frame = new JFrame();		
 		key = new Keyboard();
-		level = new RandomLevel(64, 64);
+		level = new SpawnLevel("/textures/level.png");
 		player = new Player(key);
 		frame.addKeyListener(key);
 	}
