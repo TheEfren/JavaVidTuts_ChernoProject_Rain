@@ -3,4 +3,4 @@ https://www.youtube.com/watch?v=GFYT7Lqt1h8&amp;list=PLlrATfBNZ98eOOCk2fOFg7Qg5y
 
 This is just me following The Cherno Project's video tutorial series. 
 
-I'm basically committing following every completed video.
+I'm basically committing after every completed video.
