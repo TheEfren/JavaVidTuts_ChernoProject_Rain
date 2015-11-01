@@ -17,6 +17,7 @@ import com.palmdigital.rain.input.Keyboard;
 import com.palmdigital.rain.level.Level;
 import com.palmdigital.rain.level.RandomLevel;
 import com.palmdigital.rain.level.SpawnLevel;
+import com.palmdigital.rain.level.TileCoordinate;
 
 public class Game extends Canvas implements Runnable 
 {
@@ -44,11 +45,13 @@ public class Game extends Canvas implements Runnable
 	{
 		Dimension size = new Dimension(width*scale, height*scale);
 		setPreferredSize(size);
+		
 		screen = new Screen(width, height);	
 		frame = new JFrame();		
 		key = new Keyboard();
-		level = new SpawnLevel("/textures/levels/level.png");
-		player = new Player(6 * 16, 4 * 16, key);
+		level = Level.spawn;
+		TileCoordinate playerSpawn = new TileCoordinate(19, 62);
+		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
 		frame.addKeyListener(key);
 	}
 	
