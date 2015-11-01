@@ -69,7 +69,7 @@ public class Level
 	public Tile getTile(int x, int y)
 	{
 		if(x < 0 || y < 0 || x >= width || y >= height) return Tile.voidTile;
-		System.out.println("Good");
+		//System.out.println("Good");
 		if(tiles[x + y * width] == 0xff00ff00) 
 		{
 			return Tile.grass;
