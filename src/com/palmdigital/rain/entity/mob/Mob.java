@@ -11,7 +11,7 @@ public abstract class Mob extends Entity
 	
 	public void move(int xa, int ya) // xa = how the x position changes on the x-axis, ya = how the y position changes on the y-axis
 	{
-		// into xa & ya, we actually plug in -1 (left or down), 0 (no change in position), 1 (right or up)
+		// look in subclass to see how, into xa & ya, we actually plug in -1 (left or down), 0 (no change in position), 1 (right or up)
 		// btw, we only handle moving if there's no collision
 		
 		if(xa > 0) dir = 1;
@@ -19,7 +19,7 @@ public abstract class Mob extends Entity
 		if(ya > 0) dir = 2;
 		if(ya < 0) dir = 0;
 		
-		if(!collision())
+		if(!collision(xa, ya))
 		{
 			x += xa; 
 			y += ya;
@@ -31,15 +31,17 @@ public abstract class Mob extends Entity
 		
 	}
 	
-	private boolean collision()
+	private boolean collision(int xa, int ya)
 	{
-		return false;
+		boolean solid = false;
+		if(level.getTile((x+ xa)/16, (y + ya)/16).solid())
+			solid = true;
+		System.out.println((x+ xa)/16 + ", " + (y + ya)/16);
+		return solid;
 	}
 	
 	public void render()
 	{
 		
-	}
-	
-	
+	}	
 }
