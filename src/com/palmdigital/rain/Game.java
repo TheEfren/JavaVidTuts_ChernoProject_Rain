@@ -112,7 +112,7 @@ public class Game extends Canvas implements Runnable
 			if(System.currentTimeMillis() - timer > 1000)
 			{
 				timer += 1000;
-				System.out.println(updates + " ups, " + frames + " fps");
+				//System.out.println(updates + " ups, " + frames + " fps");
 				frame.setTitle(title + " | " + updates + " ups, " + frames + " fps");
 				frames = 0;
 				updates = 0;
@@ -151,8 +151,8 @@ public class Game extends Canvas implements Runnable
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Verdana", 0, 50));
-		g.fillRect(Mouse.getX() - 32, Mouse.getY() - 32, 64, 64);
-		if(Mouse.getButton() != -1) g.drawString("Button: " + Mouse.getButton(), 80, 80);
+		//g.fillRect(Mouse.getX() - 32, Mouse.getY() - 32, 64, 64);
+		//if(Mouse.getButton() != -1) g.drawString("Button: " + Mouse.getButton(), 80, 80);
 		g.dispose();
 		bs.show();
 	}

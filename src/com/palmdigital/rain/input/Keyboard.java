@@ -19,7 +19,7 @@ public class Keyboard implements KeyListener
 		{
 			if(keys[i])
 			{
-				System.out.println(i);
+				//System.out.println(i);
 			}
 		}
 		

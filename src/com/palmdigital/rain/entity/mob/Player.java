@@ -3,6 +3,7 @@ package com.palmdigital.rain.entity.mob;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.graphics.Sprite;
 import com.palmdigital.rain.input.Keyboard;
+import com.palmdigital.rain.input.Mouse;
 
 public class Player extends Mob 
 {	
@@ -34,7 +35,6 @@ public class Player extends Mob
 		if(input.down) ya++;
 		if(input.left) xa--;
 		if(input.right) xa++;
-		
 		if(xa != 0 || ya != 0) 
 		{
 			move(xa, ya);
@@ -42,8 +42,22 @@ public class Player extends Mob
 		}
 		else
 			walking = false;
+		
+		updateShooting();
 	}
 	
+	private void updateShooting() 
+	{
+		if(Mouse.getButton() == 1)
+		{
+			double dx = Mouse.getX() - 300/2;
+			double dy = Mouse.getY() - 168/2;
+			double dir = Math.atan2(dy, dx);
+			
+			shoot(x, y, dir);
+		}
+	}
+
 	public void render(Screen screen)
 	{
 		int flip = 0;

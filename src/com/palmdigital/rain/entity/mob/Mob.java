@@ -38,6 +38,11 @@ public abstract class Mob extends Entity
 		
 	}
 	
+	protected void shoot(int x, int y, double dir)
+	{
+		System.out.println("Angle: " + dir);
+	}
+	
 	private boolean collision(int xa, int ya)
 	{
 		boolean solid = false;
