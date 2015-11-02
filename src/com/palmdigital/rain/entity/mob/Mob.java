@@ -14,6 +14,13 @@ public abstract class Mob extends Entity
 		// look in subclass to see how, into xa & ya, we actually plug in -1 (left or down), 0 (no change in position), 1 (right or up)
 		// btw, we only handle moving if there's no collision
 		
+		if(xa != 0 && ya != 0)
+		{
+			move(xa, 0);
+			move(0, ya);
+			return;
+		}
+		
 		if(xa > 0) dir = 1;
 		if(xa < 0) dir = 3;
 		if(ya > 0) dir = 2;
@@ -36,7 +43,6 @@ public abstract class Mob extends Entity
 		boolean solid = false;
 		if(level.getTile((x+ xa)/16, (y + ya)/16).solid())
 			solid = true;
-		System.out.println((x+ xa)/16 + ", " + (y + ya)/16);
 		return solid;
 	}
 	
