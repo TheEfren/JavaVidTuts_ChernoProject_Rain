@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import com.palmdigital.rain.entity.mob.Player;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.input.Keyboard;
+import com.palmdigital.rain.input.Mouse;
 import com.palmdigital.rain.level.Level;
 import com.palmdigital.rain.level.RandomLevel;
 import com.palmdigital.rain.level.SpawnLevel;
@@ -53,7 +54,12 @@ public class Game extends Canvas implements Runnable
 		TileCoordinate playerSpawn = new TileCoordinate(19, 62);
 		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
 		player.init(level);
+		
 		frame.addKeyListener(key);
+		
+		Mouse mouse = new Mouse();
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
 	}
 	
 	public synchronized void start()
@@ -90,6 +96,7 @@ public class Game extends Canvas implements Runnable
 		frame.requestFocus();
 		while(running)
 		{
+			frame.requestFocus();
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns; // now - lastTime gives us elapsed time, the time it's taken from the last iteration to this one
 			lastTime = now;					// in other words, how quickly we're rendering and updating (if we updated last frame)	
@@ -100,7 +107,7 @@ public class Game extends Canvas implements Runnable
 				delta--;		
 			}
 			render();	// display images to screen - unlimited speed
-			frames++; 	// f
+			frames++; 	
 			
 			if(System.currentTimeMillis() - timer > 1000)
 			{
@@ -144,7 +151,8 @@ public class Game extends Canvas implements Runnable
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Verdana", 0, 50));
-		//g.drawString("X: " + player.x + ", Y: " + player.y, 350, 300);
+		g.fillRect(Mouse.getX() - 32, Mouse.getY() - 32, 64, 64);
+		if(Mouse.getButton() != -1) g.drawString("Button: " + Mouse.getButton(), 80, 80);
 		g.dispose();
 		bs.show();
 	}
