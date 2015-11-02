@@ -23,9 +23,9 @@ import com.palmdigital.rain.level.TileCoordinate;
 public class Game extends Canvas implements Runnable 
 {
 	private static final long serialVersionUID = 1L;
-	public static int width = 300;
-	public static int height = 168;	// width/16 * 9; 	// 50,400
-	public static int scale = 3;
+	private static int width = 300;
+	private static int height = 168;	// width/16 * 9; 	// 50,400
+	private static int scale = 3;
 	public static String title = "Rain";	
 	
 	private Thread thread;
@@ -60,6 +60,16 @@ public class Game extends Canvas implements Runnable
 		Mouse mouse = new Mouse();
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
+	}
+	
+	public static int getWindowWidth()
+	{
+		return width * scale;
+	}
+	
+	public static int getWindowHeight()
+	{
+		return height * scale;
 	}
 	
 	public synchronized void start()
