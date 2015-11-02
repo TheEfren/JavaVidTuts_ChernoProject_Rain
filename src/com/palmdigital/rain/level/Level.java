@@ -1,5 +1,9 @@
 package com.palmdigital.rain.level;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.palmdigital.rain.entity.Entity;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.level.tile.Tile;
 import com.palmdigital.rain.level.tile.VoidTile;
@@ -9,6 +13,10 @@ public class Level
 	protected int width, height;
 	protected int[] tilesInt;
 	protected int[] tiles;
+	protected int tile_size;
+	
+	private List<Entity> entities = new ArrayList<Entity>();
+	
 	public static Level spawn = new SpawnLevel("/levels/spawn.png");
 	
 	// constructor for randomly-generated level
@@ -38,7 +46,10 @@ public class Level
 	
 	public void update()
 	{
-		
+		for(int i = 0; i < entities.size(); i++)
+		{
+			entities.get(i).update();
+		}
 	}
 	
 	private void time()
@@ -60,6 +71,16 @@ public class Level
 				getTile(x, y).render(x, y, screen);
 			}
 		}
+		
+		for(int i = 0; i < entities.size(); i++)
+		{
+			entities.get(i).render(screen);
+		}
+	}
+	
+	public void add(Entity e)
+	{
+		entities.add(e);
 	}
 	
 

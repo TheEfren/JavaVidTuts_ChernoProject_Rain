@@ -55,6 +55,23 @@ public class Screen
 		}
 	}
 	
+	public void renderTile(int xp, int yp, Sprite sprite)
+	{
+		xp -= xOffset;
+		yp -= yOffset;
+		for(int y = 0; y < sprite.SIZE; y++)
+		{
+			int ya = y + yp;
+			for(int x = 0; x < sprite.SIZE; x++)
+			{
+				int xa = x + xp;
+				if(xa < -sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
+				if(xa < 0) xa = 0;
+				pixels[xa + ya * width] = sprite.pixels[x + y * sprite.SIZE];
+			}
+		}
+	}
+	
 	public void renderPlayer(int xp, int yp, Sprite sprite, int flip)
 	{
 		xp -= xOffset;

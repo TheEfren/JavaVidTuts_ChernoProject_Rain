@@ -1,6 +1,11 @@
 package com.palmdigital.rain.entity.mob;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.palmdigital.rain.entity.Entity;
+import com.palmdigital.rain.entity.projectile.Projectile;
+import com.palmdigital.rain.entity.projectile.WizardProjectile;
 import com.palmdigital.rain.graphics.Sprite;
 
 public abstract class Mob extends Entity 
@@ -8,6 +13,8 @@ public abstract class Mob extends Entity
 	protected Sprite sprite;
 	protected int dir = 0; // normal direction conventions: 0 is north, 1 is east, 2 is south, 3 is west
 	protected boolean moving = false;
+	
+	protected List<Projectile> projectiles = new ArrayList<Projectile>();
 	
 	public void move(int xa, int ya) // xa = how the x position changes on the x-axis, ya = how the y position changes on the y-axis
 	{
@@ -40,8 +47,11 @@ public abstract class Mob extends Entity
 	
 	protected void shoot(int x, int y, double dir)
 	{
-		dir = Math.toDegrees(dir);
-		System.out.println("Angle: " + dir);
+		//dir *= 180/Math.PI;
+		Projectile p = new WizardProjectile(x, y, dir);
+		projectiles.add(p);
+		level.add(p);
+		
 	}
 	
 	private boolean collision(int xa, int ya)
