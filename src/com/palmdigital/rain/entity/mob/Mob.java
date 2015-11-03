@@ -21,6 +21,8 @@ public abstract class Mob extends Entity
 		// look in subclass to see how, into xa & ya, we actually plug in -1 (left or down), 0 (no change in position), 1 (right or up)
 		// btw, we only handle moving if there's no collision
 		
+		System.out.println("Size: " + projectiles.size());
+		
 		if(xa != 0 && ya != 0)
 		{
 			move(xa, 0);

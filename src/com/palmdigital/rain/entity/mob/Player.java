@@ -44,9 +44,21 @@ public class Player extends Mob
 		else
 			walking = false;
 		
+		clear();
 		updateShooting();
 	}
 	
+	private void clear() 
+	{
+		for(int i = 0; i < projectiles.size(); i++)
+		{
+			if(projectiles.get(i).isRemoved())
+			{
+				projectiles.remove(i);
+			}
+		}
+	}
+
 	private void updateShooting() 
 	{
 		if(Mouse.getButton() == 1)
