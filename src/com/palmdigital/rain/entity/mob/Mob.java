@@ -14,14 +14,12 @@ public abstract class Mob extends Entity
 	protected int dir = 0; // normal direction conventions: 0 is north, 1 is east, 2 is south, 3 is west
 	protected boolean moving = false;
 	
-	protected List<Projectile> projectiles = new ArrayList<Projectile>();
-	
 	public void move(int xa, int ya) // xa = how the x position changes on the x-axis, ya = how the y position changes on the y-axis
 	{
 		// look in subclass to see how, into xa & ya, we actually plug in -1 (left or down), 0 (no change in position), 1 (right or up)
 		// btw, we only handle moving if there's no collision
 		
-		System.out.println("Size: " + projectiles.size());
+		System.out.println("Size: " + level.getProjectiles().size());
 		
 		if(xa != 0 && ya != 0)
 		{
@@ -51,8 +49,7 @@ public abstract class Mob extends Entity
 	{
 		//dir *= 180/Math.PI;
 		Projectile p = new WizardProjectile(x, y, dir);
-		projectiles.add(p);
-		level.add(p);
+		level.addProjectile(p);
 		
 	}
 	

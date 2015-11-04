@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.palmdigital.rain.entity.Entity;
+import com.palmdigital.rain.entity.projectile.Projectile;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.level.tile.Tile;
 import com.palmdigital.rain.level.tile.VoidTile;
@@ -16,6 +17,7 @@ public class Level
 	protected int tile_size;
 	
 	private List<Entity> entities = new ArrayList<Entity>();
+	private List<Projectile> projectiles = new ArrayList<Projectile>();
 	
 	public static Level spawn = new SpawnLevel("/levels/spawn.png");
 	
@@ -50,6 +52,16 @@ public class Level
 		{
 			entities.get(i).update();
 		}
+		
+		for(int i = 0; i < projectiles.size(); i++)
+		{
+			projectiles.get(i).update();
+		}
+	}
+	
+	public List<Projectile> getProjectiles()
+	{
+		return projectiles;
 	}
 	
 	private void time()
@@ -76,11 +88,21 @@ public class Level
 		{
 			entities.get(i).render(screen);
 		}
+		
+		for(int i = 0; i < projectiles.size(); i++)
+		{
+			projectiles.get(i).render(screen);
+		}
 	}
 	
 	public void add(Entity e)
 	{
 		entities.add(e);
+	}
+	
+	public void addProjectile(Projectile p)
+	{
+		projectiles.add(p);
 	}
 	
 

@@ -1,5 +1,7 @@
 package com.palmdigital.rain.entity.projectile;
 
+import java.util.Random;
+
 import com.palmdigital.rain.entity.Entity;
 import com.palmdigital.rain.graphics.Sprite;
 
@@ -12,6 +14,8 @@ public abstract class Projectile extends Entity
 	protected double nx, ny;
 	protected double distance;
 	protected double speed, rateOfFire, range, damage;
+	
+	protected final Random random = new Random();
 	
 	public Projectile(int x, int y, double dir)
 	{
