@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.palmdigital.rain.entity.Entity;
+import com.palmdigital.rain.entity.Spawner;
+import com.palmdigital.rain.entity.particle.Particle;
 import com.palmdigital.rain.entity.projectile.Projectile;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.level.tile.Tile;
-import com.palmdigital.rain.level.tile.VoidTile;
 
 public class Level 
 {
@@ -18,6 +19,7 @@ public class Level
 	
 	private List<Entity> entities = new ArrayList<Entity>();
 	private List<Projectile> projectiles = new ArrayList<Projectile>();
+	private List<Particle> particles = new ArrayList<Particle>();
 	
 	public static Level spawn = new SpawnLevel("/levels/spawn.png");
 	
@@ -35,6 +37,7 @@ public class Level
 		loadLevel(path);
 		generateLevel();	
 		
+		add(new Spawner(16 * 16, 62 * 16, Spawner.Type.PARTICLE, 50000, this));
 	}
 
 	protected void generateLevel() 
@@ -56,6 +59,11 @@ public class Level
 		for(int i = 0; i < projectiles.size(); i++)
 		{
 			projectiles.get(i).update();
+		}
+		
+		for(int i = 0; i < particles.size(); i++)
+		{
+			particles.get(i).update();
 		}
 	}
 	
@@ -108,19 +116,29 @@ public class Level
 		{
 			projectiles.get(i).render(screen);
 		}
+		
+		for(int i = 0; i < particles.size(); i++)
+		{
+			particles.get(i).render(screen);
+		}
 	}
 	
 	public void add(Entity e)
 	{
-		entities.add(e);
+		e.init(this);
+		if(e instanceof Particle)
+		{
+			particles.add((Particle) e);
+		}
+		else if(e instanceof Projectile)
+		{
+			projectiles.add((Projectile) e);
+		}
+		else
+		{
+			entities.add(e);
+		}
 	}
-	
-	public void addProjectile(Projectile p)
-	{
-		p.init(this);
-		projectiles.add(p);
-	}
-	
 
 	// Grass 	= 0xff00ff00
 	// Flower 	= 0xffffff00 

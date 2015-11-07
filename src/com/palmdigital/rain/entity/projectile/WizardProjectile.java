@@ -23,7 +23,7 @@ public class WizardProjectile extends Projectile
 	{
 		if(level.tileCollision(x, y, nx, ny, 7)) 
 		{	
-			Particle p = new Particle((int)x, (int)y, 50, 500);
+			Particle p = new Particle((int)x, (int)y, 50);
 			level.add(p);
 			remove();
 		}
