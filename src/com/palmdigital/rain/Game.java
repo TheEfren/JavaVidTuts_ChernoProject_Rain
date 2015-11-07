@@ -8,11 +8,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
 import com.palmdigital.rain.entity.mob.Player;
 import com.palmdigital.rain.graphics.Screen;
+import com.palmdigital.rain.graphics.Sprite;
 import com.palmdigital.rain.input.Keyboard;
 import com.palmdigital.rain.input.Mouse;
 import com.palmdigital.rain.level.Level;
@@ -152,6 +154,18 @@ public class Game extends Canvas implements Runnable
 		int yScroll = player.y - screen.height/2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
+		
+		
+		
+		Sprite sprite = new Sprite(2, 2, 0xffffff);
+		Random random = new Random();
+		int x = random.nextInt(20);
+		int y = random.nextInt(20);
+		for(int i = 0; i < 100; i++)
+		{
+			screen.renderSprite(width-60 + x, 50 + y, sprite, true);
+		}
+		
 		
 		for(int i = 0; i < pixels.length; i++)
 		{
