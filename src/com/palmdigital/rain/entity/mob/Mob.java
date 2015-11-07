@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.palmdigital.rain.entity.Entity;
+import com.palmdigital.rain.entity.particle.Particle;
 import com.palmdigital.rain.entity.projectile.Projectile;
 import com.palmdigital.rain.entity.projectile.WizardProjectile;
 import com.palmdigital.rain.graphics.Sprite;
