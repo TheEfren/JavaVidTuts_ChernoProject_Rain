@@ -153,19 +153,7 @@ public class Game extends Canvas implements Runnable
 		int xScroll = player.x - screen.width/2;
 		int yScroll = player.y - screen.height/2;
 		level.render(xScroll, yScroll, screen);
-		player.render(screen);
-		
-		
-		
-		Sprite sprite = new Sprite(2, 2, 0xffffff);
-		Random random = new Random();
-		int x = random.nextInt(20);
-		int y = random.nextInt(20);
-		for(int i = 0; i < 100; i++)
-		{
-			screen.renderSprite(width-60 + x, 50 + y, sprite, true);
-		}
-		
+		player.render(screen);		
 		
 		for(int i = 0; i < pixels.length; i++)
 		{
