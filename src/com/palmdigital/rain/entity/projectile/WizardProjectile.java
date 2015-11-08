@@ -1,7 +1,6 @@
 package com.palmdigital.rain.entity.projectile;
 
 import com.palmdigital.rain.entity.spawner.ParticleSpawner;
-import com.palmdigital.rain.entity.spawner.Spawner;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.graphics.Sprite;
 
