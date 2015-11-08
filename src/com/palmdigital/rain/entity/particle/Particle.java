@@ -9,6 +9,7 @@ public class Particle extends Entity
 	private Sprite sprite;
 	
 	private int life;
+	private int time = 0;
 	
 	protected double xx, yy, xa, ya; 	// xa & ya represent the amount of pixels we move on the x and y axes
 										// xx & yy represent 
@@ -19,7 +20,7 @@ public class Particle extends Entity
 		this.y = y;
 		this.xx = x; // x is an integer, but xx is a double
 		this.yy = y;
-		this.life = life;
+		this.life = life + (random.nextInt(20) - 10);
 		sprite = Sprite.particle_normal;
 		
 		this.xa = random.nextGaussian();	// random movement in xa and ya
@@ -28,8 +29,13 @@ public class Particle extends Entity
 	
 	public void update()
 	{
+		time++;
+		if(time >= 7400) time = 0;
+		
+		if(time > life) remove();
+		
 		this.xx += xa;
-		this.yy += ya;
+		this.yy += ya;		
 	}
 	
 	public void render(Screen screen)

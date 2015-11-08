@@ -1,6 +1,7 @@
 package com.palmdigital.rain.entity.projectile;
 
-import com.palmdigital.rain.entity.particle.Particle;
+import com.palmdigital.rain.entity.spawner.ParticleSpawner;
+import com.palmdigital.rain.entity.spawner.Spawner;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.graphics.Sprite;
 
@@ -23,8 +24,7 @@ public class WizardProjectile extends Projectile
 	{
 		if(level.tileCollision(x, y, nx, ny, 7)) 
 		{	
-			Particle p = new Particle((int)x, (int)y, 50);
-			level.add(p);
+			level.add(new ParticleSpawner((int)x, (int)y, 44, 50, level));
 			remove();
 		}
 		move();
