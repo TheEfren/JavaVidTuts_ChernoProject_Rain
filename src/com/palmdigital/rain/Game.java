@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import com.palmdigital.rain.entity.mob.Player;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.graphics.Sprite;
+import com.palmdigital.rain.graphics.SpriteSheet;
 import com.palmdigital.rain.input.Keyboard;
 import com.palmdigital.rain.input.Mouse;
 import com.palmdigital.rain.level.Level;
@@ -153,7 +154,8 @@ public class Game extends Canvas implements Runnable
 		int xScroll = player.x - screen.width/2;
 		int yScroll = player.y - screen.height/2;
 		level.render(xScroll, yScroll, screen);
-		player.render(screen);		
+		player.render(screen);	
+		screen.renderSheet(40, 40, SpriteSheet.player_down, false);
 		
 		for(int i = 0; i < pixels.length; i++)
 		{
