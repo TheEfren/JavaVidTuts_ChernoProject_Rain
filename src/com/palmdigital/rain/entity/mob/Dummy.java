@@ -25,8 +25,8 @@ public class Dummy extends Mob
 	{
 		int xa = 0;
 		int ya = 0;
-		//ya++;
-		ya--;
+		ya++;
+		//ya--;
 		if(walking) animSprite.update();
 		else animSprite.setFrame(0);
 		if(ya < 0) 
