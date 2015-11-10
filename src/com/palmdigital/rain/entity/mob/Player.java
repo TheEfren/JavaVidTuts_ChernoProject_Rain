@@ -15,11 +15,12 @@ public class Player extends Mob
 	private Keyboard input;
 	private Sprite sprite;
 	private int anim = 0;
-	private boolean walking = false;
+	private boolean walking = false;	
+	
 	private AnimatedSprite down = new AnimatedSprite(SpriteSheet.player_down, 32, 32, 3);
 	private AnimatedSprite up = new AnimatedSprite(SpriteSheet.player_up, 32, 32, 3);
 	private AnimatedSprite left = new AnimatedSprite(SpriteSheet.player_left, 32, 32, 3);
-	private AnimatedSprite right = new AnimatedSprite(SpriteSheet.player_right, 32, 32, 3);
+	private AnimatedSprite right = new AnimatedSprite(SpriteSheet.player_right, 32, 32, 3);	
 	
 	private AnimatedSprite animSprite = down;
 	
@@ -48,8 +49,6 @@ public class Player extends Mob
 		else animSprite.setFrame(1);
 		if(fireRate > 0) fireRate--;
 		int xa = 0, ya = 0;
-		if(anim < 7500) anim++;
-		else anim = 0;
 		
 		if(input.up) 
 		{

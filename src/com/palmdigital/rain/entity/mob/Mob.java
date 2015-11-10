@@ -9,8 +9,16 @@ import com.palmdigital.rain.graphics.Sprite;
 public abstract class Mob extends Entity 
 {
 	protected Sprite sprite;
-	protected int dir = 0; // normal direction conventions: 0 is north, 1 is east, 2 is south, 3 is west
 	protected boolean moving = false;
+	protected boolean walking = false;
+	
+	// normal direction conventions: 0 is north, 1 is east, 2 is south, 3 is west
+	protected enum Direction
+	{
+		UP, DOWN, LEFT, RIGHT
+	}
+	
+	protected Direction dir;
 	
 	public void move(int xa, int ya) // xa = how the x position changes on the x-axis, ya = how the y position changes on the y-axis
 	{
@@ -24,10 +32,10 @@ public abstract class Mob extends Entity
 			return;
 		}
 		
-		if(xa > 0) dir = 1;
-		if(xa < 0) dir = 3;
-		if(ya > 0) dir = 2;
-		if(ya < 0) dir = 0;
+		if(xa > 0) dir = Direction.RIGHT;
+		if(xa < 0) dir = Direction.LEFT;
+		if(ya > 0) dir = Direction.DOWN;
+		if(ya < 0) dir = Direction.UP;
 		
 		if(!collision(xa, ya))
 		{
