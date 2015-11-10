@@ -1,12 +1,9 @@
 package com.palmdigital.rain.entity.mob;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.palmdigital.rain.entity.Entity;
-import com.palmdigital.rain.entity.particle.Particle;
 import com.palmdigital.rain.entity.projectile.Projectile;
 import com.palmdigital.rain.entity.projectile.WizardProjectile;
+import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.graphics.Sprite;
 
 public abstract class Mob extends Entity 
@@ -39,17 +36,13 @@ public abstract class Mob extends Entity
 		}
 	}
 	
-	public void update()
-	{
-		
-	}
+	public abstract void update();
 	
 	protected void shoot(int x, int y, double dir)
 	{
 		//dir *= 180/Math.PI;
 		Projectile p = new WizardProjectile(x, y, dir);
-		level.add(p);
-		
+		level.add(p);		
 	}
 	
 	private boolean collision(int xa, int ya)
@@ -67,8 +60,5 @@ public abstract class Mob extends Entity
 		return solid;
 	}
 	
-	public void render()
-	{
-		
-	}	
+	public abstract void render(Screen screen);	
 }

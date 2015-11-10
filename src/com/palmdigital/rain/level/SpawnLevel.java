@@ -5,9 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.palmdigital.rain.graphics.Sprite;
-import com.palmdigital.rain.level.tile.GrassTile;
-import com.palmdigital.rain.level.tile.Tile;
+import com.palmdigital.rain.entity.mob.Dummy;
 
 public class SpawnLevel extends Level
 {
@@ -31,6 +29,7 @@ public class SpawnLevel extends Level
 			e.printStackTrace();
 			System.out.println("Exception! Could not load level file!");
 		}
+		add(new Dummy(19, 55));
 	}
 
 	protected void generateLevel()

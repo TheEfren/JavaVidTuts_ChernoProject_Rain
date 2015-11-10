@@ -4,7 +4,7 @@ import com.palmdigital.rain.entity.Entity;
 import com.palmdigital.rain.entity.particle.Particle;
 import com.palmdigital.rain.level.Level;
 
-public class Spawner extends Entity
+public abstract class Spawner extends Entity
 {
 	public enum Type
 	{
