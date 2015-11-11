@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.palmdigital.rain.entity.Entity;
 import com.palmdigital.rain.entity.spawner.Spawner;
+import com.palmdigital.rain.entity.mob.Player;
 import com.palmdigital.rain.entity.particle.Particle;
 import com.palmdigital.rain.entity.projectile.Projectile;
 import com.palmdigital.rain.graphics.Screen;
@@ -20,6 +21,8 @@ public class Level
 	private List<Entity> entities = new ArrayList<Entity>();
 	private List<Projectile> projectiles = new ArrayList<Projectile>();
 	private List<Particle> particles = new ArrayList<Particle>();
+	
+	private List<Player> players = new ArrayList<Player>();
 	
 	public static Level spawn = new SpawnLevel("/levels/spawn.png");
 	
@@ -65,6 +68,11 @@ public class Level
 			particles.get(i).update();
 		}
 		
+		for(int i = 0; i < players.size(); i++)
+		{
+			players.get(i).update();
+		}
+		
 		remove();
 	}
 	
@@ -83,6 +91,11 @@ public class Level
 		for(int i = 0; i < particles.size(); i++)
 		{
 			if(particles.get(i).isRemoved()) particles.remove(i);
+		}
+		
+		for(int i = 0; i < players.size(); i++)
+		{
+			if(players.get(i).isRemoved()) players.remove(i);
 		}
 	}
 	
@@ -140,6 +153,11 @@ public class Level
 		{
 			particles.get(i).render(screen);
 		}
+		
+		for(int i = 0; i < players.size(); i++)
+		{
+			players.get(i).render(screen);
+		}
 	}
 	
 	public void add(Entity e)
@@ -153,10 +171,29 @@ public class Level
 		{
 			projectiles.add((Projectile) e);
 		}
+		else if(e instanceof Player)
+		{
+			players.add((Player) e);
+		}
 		else
 		{
 			entities.add(e);
 		}
+	}
+	
+	public List<Player> getPlayers()
+	{
+		return players;
+	}
+	
+	public Player getPlayerAt(int index)
+	{
+		return players.get(index);
+	}
+	
+	public Player getClientPlayer()
+	{
+		return players.get(0);
 	}
 
 	// Grass 	= 0xff00ff00
