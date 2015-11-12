@@ -17,7 +17,7 @@ public class Dummy extends Mob
 	private int time = 0;
 	private int xa = 0;
 	private int ya = 0;
-	
+
 	public Dummy(int x, int y)
 	{
 		this.x = x << 4;
