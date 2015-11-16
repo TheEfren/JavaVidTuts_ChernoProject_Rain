@@ -5,6 +5,7 @@ import java.util.Random;
 import com.palmdigital.rain.entity.mob.Chaser;
 import com.palmdigital.rain.entity.mob.Mob;
 import com.palmdigital.rain.entity.mob.Player;
+import com.palmdigital.rain.entity.mob.Star;
 import com.palmdigital.rain.entity.projectile.Projectile;
 import com.palmdigital.rain.level.tile.Tile;
 
@@ -131,6 +132,7 @@ public class Screen
 				if(xa < 0) xa = 0;
 				int col = mob.getSprite().pixels[xs + ys * 32];
 				if(mob instanceof Chaser && col == 0xff472BBF) col = 0xffBA0015;
+				if(mob instanceof Star && col == 0xff472BBF) col = 0xffE8E83A;
 				if(col != 0xffff00ff) // don't render that pink background color that comes with the king cherno sprite
 					pixels[xa + ya * width] = col;
 			}

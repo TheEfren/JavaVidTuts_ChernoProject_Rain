@@ -252,8 +252,9 @@ public class Level
 				if(!vecInList(openList, a) || gCost < node.gCost)
 					openList.add(node);
 			}
-			
 		}
+		closedList.clear();
+		return null;
 	}
 	
 	private boolean vecInList(List<Node> list, Vector2i vector)
