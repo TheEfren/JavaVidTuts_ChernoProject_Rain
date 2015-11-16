@@ -98,8 +98,8 @@ public abstract class Mob extends Entity
 		for(int c = 0; c < 4; c++)
 		{
 			// the width of the collision area is defined by the number after the '*' & number after the third '+' or '-' 
-			double xt = ((x + xa) - c % 2 * 16) / 16;
-			double yt = ((y + ya) - c / 2 * 16) / 16;
+			double xt = ((x + xa) - c % 2 * 15) / 16; // note: changed '2 * 16' to '2 * 15' to help with collision area 
+			double yt = ((y + ya) - c / 2 * 15) / 16;
 			int ix = (int) Math.ceil(xt);
 			int iy = (int) Math.ceil(yt);
 			if(c % 2 == 0) 
