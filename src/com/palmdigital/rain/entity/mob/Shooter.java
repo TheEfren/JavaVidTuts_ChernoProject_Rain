@@ -11,15 +11,18 @@ import com.palmdigital.rain.util.Vector2i;
 
 public class Shooter extends Mob
 {
-	private int time = 0;
-	private int xa = 0, ya = 0;
-	
 	private AnimatedSprite down = new AnimatedSprite(SpriteSheet.dummy_down, 32, 32, 3);
 	private AnimatedSprite up = new AnimatedSprite(SpriteSheet.dummy_up, 32, 32, 3);
 	private AnimatedSprite left = new AnimatedSprite(SpriteSheet.dummy_left, 32, 32, 3);
 	private AnimatedSprite right = new AnimatedSprite(SpriteSheet.dummy_right, 32, 32, 3);
 	
 	private AnimatedSprite animSprite = down;
+	
+	private int time = 0;
+	private int xa = 0, ya = 0;
+	
+	private Entity rand = null;
+	
 	
 	
 	public Shooter(int x, int y)
@@ -76,6 +79,34 @@ public class Shooter extends Mob
 		else
 			walking = false;
 		
+		shootRandom();
+	}
+	
+	private void shootRandom()
+	{
+		if(time % (30 + random.nextInt(91)) == 0)
+		{
+			List<Entity> entities = level.getEntities(this, 500);
+			entities.add(level.getClientPlayer());
+			
+			// get a random index from the entities within the specified range in getEntities() method
+			int index = random.nextInt(entities.size());			
+			rand = entities.get(index);		
+		}
+		
+		if(rand != null)
+		{			
+			double px = rand.getX();
+			double py = rand.getY();
+			double dx = px - x;
+			double dy = py - y;
+			double dir = Math.atan2(dy, dx);		
+			shoot(x, y, dir);
+		}
+	}
+	
+	private void shootClosest()
+	{
 		List<Entity> entities = level.getEntities(this, 500);
 		entities.add(level.getClientPlayer());
 		
