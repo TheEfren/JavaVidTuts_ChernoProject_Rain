@@ -63,6 +63,13 @@ public class Vector2i
 		return this;
 	}
 	
+	public static double getDistance(Vector2i v0, Vector2i v1)
+	{
+		double dx = v0.getX() - v1.getX();
+		double dy = v0.getY() - v1.getY();
+		return Math.sqrt(dx * dx + dy * dy);
+	}
+	
 	public boolean equals(Object object)
 	{
 		if(!(object instanceof Vector2i))

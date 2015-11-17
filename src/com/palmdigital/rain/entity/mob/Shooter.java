@@ -1,9 +1,13 @@
 package com.palmdigital.rain.entity.mob;
 
+import java.util.List;
+
+import com.palmdigital.rain.entity.Entity;
 import com.palmdigital.rain.graphics.AnimatedSprite;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.graphics.Sprite;
 import com.palmdigital.rain.graphics.SpriteSheet;
+import com.palmdigital.rain.util.Vector2i;
 
 public class Shooter extends Mob
 {
@@ -66,19 +70,38 @@ public class Shooter extends Mob
 		
 		if(xa != 0 || ya != 0) 
 		{
-			move(xa, ya);
+			//move(xa, ya);
 			walking = true;
 		}
 		else
 			walking = false;
 		
-		Player p = level.getClientPlayer();
-		double px = p.getX();
-		double py = p.getY();
-		double dx = px - x;
-		double dy = py - y;
-		double dir = Math.atan2(dy, dx);		
-		shoot(x, y, dir);
+		List<Entity> entities = level.getEntities(this, 500);
+		entities.add(level.getClientPlayer());
+		
+		double min = 0;
+		Entity closest = null;
+		// this finds the closest entity
+		for(int i = 0; i < entities.size(); i++)
+		{
+			Entity e = entities.get(i);
+			double distance = Vector2i.getDistance(new Vector2i((int)x, (int)y), new Vector2i((int)e.getX(), (int)e.getY()));
+			if(i == 0 || distance < min) 
+			{
+				min = distance;
+				closest = e;	
+			}
+		}
+		
+		if(closest != null)
+		{			
+			double px = closest.getX();
+			double py = closest.getY();
+			double dx = px - x;
+			double dy = py - y;
+			double dir = Math.atan2(dy, dx);		
+			shoot(x, y, dir);
+		}
 	}
 
 	public void render(Screen screen) 

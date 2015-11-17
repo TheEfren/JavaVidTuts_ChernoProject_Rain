@@ -282,7 +282,8 @@ public class Level
 		for(int i = 0; i < entities.size(); i++)
 		{
 			Entity entity = entities.get(i);
-			int x = (int)entity.getX();
+			if(entity.equals(e)) continue; 	// this line ensures we don't include 
+			int x = (int)entity.getX();		// ourselves as one of the returned entities
 			int y = (int)entity.getY();
 			
 			int dx = Math.abs(x - ex);

@@ -65,7 +65,7 @@ public class Dummy extends Mob
 		
 		if(xa != 0 || ya != 0) 
 		{
-			move(xa, ya);
+			//move(xa, ya);
 			walking = true;
 		}
 		else
