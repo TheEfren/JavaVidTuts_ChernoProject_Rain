@@ -7,6 +7,7 @@ import com.palmdigital.rain.graphics.AnimatedSprite;
 import com.palmdigital.rain.graphics.Screen;
 import com.palmdigital.rain.graphics.Sprite;
 import com.palmdigital.rain.graphics.SpriteSheet;
+import com.palmdigital.rain.util.Debug;
 import com.palmdigital.rain.util.Vector2i;
 
 public class Shooter extends Mob
@@ -84,11 +85,11 @@ public class Shooter extends Mob
 	
 	private void shootRandom()
 	{
-		if(time % (30 + random.nextInt(91)) == 0)
-		{
-			List<Entity> entities = level.getEntities(this, 500);
-			entities.add(level.getClientPlayer());
-			
+		List<Entity> entities = level.getEntities(this, 500);
+		entities.add(level.getClientPlayer());
+		
+		if(time % (30 + random.nextInt(91)) == 0) // happens in the range from .5 to 2 seconds
+		{			
 			// get a random index from the entities within the specified range in getEntities() method
 			int index = random.nextInt(entities.size());			
 			rand = entities.get(index);		
@@ -138,6 +139,7 @@ public class Shooter extends Mob
 	public void render(Screen screen) 
 	{
 		sprite = animSprite.getSprite();
+		Debug.drawRect(screen, 17*16, 57*16, 60, 40, true);
 		screen.renderMob((int)(x -16), (int)(y - 16), this);
 	}
 	
