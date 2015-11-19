@@ -9,7 +9,8 @@ public class SpriteSheet
 {
 	private String path;
 	public final int SIZE;
-	public final int WIDTH, HEIGHT;
+	public final int SPRITE_WIDTH, SPRITE_HEIGHT;
+	private int width, height;
 	public int[] pixels;
 	
 	public static SpriteSheet tiles = new SpriteSheet("/textures/sheets/spritesheet.png", 256);
@@ -34,8 +35,8 @@ public class SpriteSheet
 	{
 		this.path = path;
 		SIZE = size;
-		WIDTH = size;
-		HEIGHT = size;
+		SPRITE_WIDTH = size;
+		SPRITE_HEIGHT = size;
 		pixels = new int[SIZE * SIZE];
 		load();
 	}
@@ -50,8 +51,8 @@ public class SpriteSheet
 			SIZE = width;
 		else
 			SIZE = -1;
-		WIDTH = w;
-		HEIGHT = h;
+		SPRITE_WIDTH = w;
+		SPRITE_HEIGHT = h;
 		pixels = new int[w * h];
 		for(int y0 = 0; y0 < h; y0++)
 		{
@@ -59,7 +60,7 @@ public class SpriteSheet
 			for(int x0 = 0; x0 < w; x0++)
 			{
 				int xp = xx + x0;
-				pixels[x0 + y0 * w] = sheet.pixels[xp + yp * sheet.WIDTH];
+				pixels[x0 + y0 * w] = sheet.pixels[xp + yp * sheet.SPRITE_WIDTH];
 			}
 		}
 		int frame = 0;
@@ -73,23 +74,22 @@ public class SpriteSheet
 				{
 					for(int x0 = 0; x0 < spriteSize; x0++)
 					{
-						spritePixels[x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize) + (y0 + ya * spriteSize) * WIDTH];
+						spritePixels[x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize) + (y0 + ya * spriteSize) * SPRITE_WIDTH];
 					}
 				}
 				Sprite sprite = new Sprite(spritePixels, spriteSize, spriteSize);
 				sprites[frame++] = sprite;
 			}
-		}
-		
+		}		
 	}
 	
 	public SpriteSheet(String path, int width, int height)
 	{
 		this.path = path;
 		SIZE = -1;
-		WIDTH = width;
-		HEIGHT = height;
-		pixels = new int[WIDTH * HEIGHT];
+		SPRITE_WIDTH = width;
+		SPRITE_HEIGHT = height;
+		pixels = new int[SPRITE_WIDTH * SPRITE_HEIGHT];
 		load();
 	}
 	
@@ -98,17 +98,42 @@ public class SpriteSheet
 		return sprites;
 	}
 	
+	public int getWidth()
+	{
+		return width;
+	}
 	
+	public int getHeight()
+	{
+		return height;
+	}
+	
+	public int[] getPixels()
+	{
+		return pixels;
+	}
+		
 	private void load()
 	{
-		try {
+		try 
+		{
+			System.out.print("Trying to load " + path + "...");
 			BufferedImage image = ImageIO.read(SpriteSheet.class.getResource(path));
-			int w = image.getWidth();
-			int h = image.getHeight();
-			image.getRGB(0, 0, w, h, pixels, 0, w);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println(" succeeded!");
+			width = image.getWidth();
+			height = image.getHeight();
+			pixels = new int[width * height];
+			image.getRGB(0, 0, width, height, pixels, 0, width);
+		} 
+		
+		catch (IOException e) 
+		{
 			e.printStackTrace();
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(" failed!");
 		}
 	}
 	

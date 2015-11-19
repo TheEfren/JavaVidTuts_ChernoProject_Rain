@@ -1,26 +1,20 @@
 package com.palmdigital.rain;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.Random;
 
 import javax.swing.JFrame;
 
 import com.palmdigital.rain.entity.mob.Player;
+import com.palmdigital.rain.graphics.Font;
 import com.palmdigital.rain.graphics.Screen;
-import com.palmdigital.rain.graphics.Sprite;
-import com.palmdigital.rain.graphics.SpriteSheet;
 import com.palmdigital.rain.input.Keyboard;
 import com.palmdigital.rain.input.Mouse;
 import com.palmdigital.rain.level.Level;
-import com.palmdigital.rain.level.RandomLevel;
-import com.palmdigital.rain.level.SpawnLevel;
 import com.palmdigital.rain.level.TileCoordinate;
 
 public class Game extends Canvas implements Runnable 
@@ -39,7 +33,7 @@ public class Game extends Canvas implements Runnable
 	private boolean running = false;
 	
 	private Screen screen;
-	
+	private Font font;
 	private BufferedImage image = new BufferedImage(width, height, 
 			BufferedImage.TYPE_INT_RGB);
 	
@@ -57,6 +51,7 @@ public class Game extends Canvas implements Runnable
 		TileCoordinate playerSpawn = new TileCoordinate(19, 40);
 		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
 		level.add(player);
+		font = new Font();
 		
 		frame.addKeyListener(key);
 		
@@ -153,6 +148,7 @@ public class Game extends Canvas implements Runnable
 		double xScroll = player.getX() - screen.width/2;
 		double yScroll = player.getY() - screen.height/2;
 		level.render((int)xScroll, (int)yScroll, screen);
+		font.render(screen);
 		//screen.renderSheet(40, 40, SpriteSheet.player_down, false);
 		
 		for(int i = 0; i < pixels.length; i++)
@@ -162,8 +158,6 @@ public class Game extends Canvas implements Runnable
 		
 		Graphics g = bs.getDrawGraphics();		
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("Verdana", 0, 50));
 		//g.fillRect(Mouse.getX() - 32, Mouse.getY() - 32, 64, 64);
 		//if(Mouse.getButton() != -1) g.drawString("Button: " + Mouse.getButton(), 80, 80);
 		g.dispose();
@@ -182,5 +176,6 @@ public class Game extends Canvas implements Runnable
 		game.frame.setVisible(true);
 		
 		game.start();
+		
 	}	
 }
